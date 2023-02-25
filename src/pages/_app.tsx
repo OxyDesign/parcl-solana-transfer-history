@@ -15,15 +15,17 @@ globalStore.subscribe(() => {
   localStorage.setItem(localStorageProp, JSON.stringify({ dark }));
 });
 
-const _App: FC<AppProps> = ({ Component, pageProps }) => {
+const InternalApp: FC<AppProps> = ({ Component, pageProps }) => {
   const dispatch = useDispatch();
   const dark = useSelector((state: AppState) => state.dark);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const { dark } = JSON.parse(localStorage.getItem(localStorageProp) || '{}');
-    if (dark !== undefined) {
-      dispatch({ type: 'CHANGE_MODE', dark });
+    const { dark: darkFromLocalStorage } = JSON.parse(
+      localStorage.getItem(localStorageProp) || '{}',
+    );
+    if (darkFromLocalStorage !== undefined) {
+      dispatch({ type: 'CHANGE_MODE', dark: darkFromLocalStorage });
     }
     setLoading(false);
   }, [dispatch]);
@@ -43,12 +45,10 @@ const _App: FC<AppProps> = ({ Component, pageProps }) => {
   );
 };
 
-const App: FC<AppProps> = (props) => {
-  return (
-    <Provider store={globalStore}>
-      <_App {...props} />
-    </Provider>
-  );
-};
+const App: FC<AppProps> = (props) => (
+  <Provider store={globalStore}>
+    <InternalApp {...props} />
+  </Provider>
+);
 
 export default App;
