@@ -1,0 +1,16 @@
+@mixin conicGradient($darkMode: true) {
+  $neutralColor: theme('colors.gray.200');
+
+  @if $darkMode {
+    $neutralColor: theme('colors.gray.800');
+  }
+
+  background: conic-gradient(
+    from 0.5turn at 50% 50%,
+    theme('colors.indigo.500'),
+    2deg,
+    $neutralColor,
+    320deg,
+    theme('colors.indigo.500')
+  );
+}
