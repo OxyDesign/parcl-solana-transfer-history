@@ -1,0 +1,26 @@
+.app {
+  @apply absolute
+    top-0
+    left-0
+    h-full
+    w-full
+    flex
+    bg-gray-500;
+}
+
+.main {
+  @apply flex
+    flex-col
+    h-full
+    w-full
+    p-4
+    opacity-100
+    transition-opacity
+    duration-500
+    bg-gray-100
+    dark:bg-gray-900;
+
+  &.loading {
+    @apply opacity-0;
+  }
+}

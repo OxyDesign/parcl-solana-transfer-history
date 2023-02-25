@@ -1,0 +1,48 @@
+.root {
+  @apply inline-flex gap-1 items-center cursor-pointer;
+}
+
+.input {
+  @apply sr-only;
+}
+
+.icon {
+  @apply h-4
+    w-4
+    text-gray-900
+    dark:text-gray-100
+    transition-colors;
+}
+
+.toggle {
+  @apply relative
+    w-7
+    h-4
+    bg-gray-200
+    rounded-full
+    dark:bg-gray-700
+    dark:border-gray-600
+    after:content-['']
+    after:absolute
+    after:top-0.5
+    after:left-[2px]
+    after:bg-white
+    after:border-gray-300
+    after:border
+    after:rounded-full
+    after:h-3
+    after:w-3
+    after:transition-all;
+
+  .input:focus ~ & {
+    @apply ring-1
+      ring-indigo-300
+      dark:ring-indigo-800;
+  }
+
+  .input:checked ~ & {
+    @apply bg-indigo-600
+      after:translate-x-full
+      after:border-gray-700;
+  }
+}
