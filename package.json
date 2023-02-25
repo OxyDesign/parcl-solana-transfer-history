@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettify": "prettier --write \"src/**/*.{js,json,ts,tsx,scss}\""
+    "prettify": "prettier --write \"./**/*.{js,json,ts,tsx,scss}\""
   },
   "dependencies": {
     "@heroicons/react": "^2.0.16",
