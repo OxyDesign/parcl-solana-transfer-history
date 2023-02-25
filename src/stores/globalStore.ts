@@ -3,6 +3,12 @@ import { defaultState } from './defaultState';
 
 function appReducer(state = defaultState, action: any = {}) {
   switch (action.type) {
+    case 'CHANGE_MODE':
+      return {
+        ...state,
+        dark: action.dark,
+      };
+
     case 'RESET':
       return defaultState;
 
