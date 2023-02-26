@@ -61,6 +61,7 @@ const InternalApp: FC<AppProps> = ({ Component, pageProps }) => {
           onToggle={() => {
             dispatch({ type: 'CHANGE_MODE', dark: !dark });
           }}
+          className={styles.toggle}
         />
         <Component {...pageProps} />
       </main>

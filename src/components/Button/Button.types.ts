@@ -1,8 +1,6 @@
-import { ReactNode } from 'react';
+import { AriaButtonProps } from 'react-aria';
 
-export interface ButtonProps {
-  children: ReactNode;
+export interface ButtonProps extends AriaButtonProps {
   className?: string;
-  isDisabled?: boolean;
   isLoading?: boolean;
 }

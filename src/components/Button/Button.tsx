@@ -5,8 +5,13 @@ import { Loader } from '../Loader';
 import { ButtonProps } from './Button.types';
 import styles from './Button.module.scss';
 
-export const Button: FC<ButtonProps> = ({ isLoading = false, ...props }) => {
-  const { children, className, isDisabled } = props;
+export const Button: FC<ButtonProps> = ({
+  isLoading = false,
+  children,
+  className,
+  isDisabled,
+  ...props
+}) => {
   const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps } = useButton({ ...props, isDisabled: isDisabled || isLoading }, ref);
 
