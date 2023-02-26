@@ -17,10 +17,12 @@
 
 .loader {
   @apply relative
-    w-12
     h-12
+    max-h-[50%]
+    aspect-square
     rounded-full
-    animate-spin;
+    animate-spin
+    overflow-hidden;
 
   @include mixins.conicGradient($darkMode: false);
 
@@ -32,10 +34,10 @@
     @apply block
       content-['']
       absolute
-      top-px
-      right-px
-      bottom-px
-      left-px
+      top-0.5
+      right-0.5
+      bottom-0.5
+      left-0.5
       rounded-full
       bg-gray-100
       dark:bg-gray-900;

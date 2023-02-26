@@ -6,8 +6,23 @@ import globalStore from '@/stores/globalStore';
 import { ThemeToggle } from '@/components';
 import { localStorageProp } from '@/constants/localStorage';
 import { AppState } from '@/types/stores';
+import { Roboto, Roboto_Mono } from 'next/font/google';
 import '@/styles/globals.css';
 import styles from '@/styles/App.module.scss';
+
+const roboto = Roboto({
+  weight: ['100', '300', '400', '500', '700', '900'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
+});
+
+const robotoMono = Roboto_Mono({
+  weight: ['100', '200', '300', '400', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-robotomono',
+});
 
 globalStore.subscribe(() => {
   const { dark } = globalStore.getState();
@@ -31,7 +46,15 @@ const InternalApp: FC<AppProps> = ({ Component, pageProps }) => {
   }, [dispatch]);
 
   return (
-    <div className={cn([styles.app, dark && 'dark'])}>
+    <div
+      className={cn([
+        roboto.variable,
+        robotoMono.variable,
+        'font-sans',
+        styles.app,
+        dark && 'dark',
+      ])}
+    >
       <main className={cn([styles.main, loading && styles.loading])}>
         <ThemeToggle
           checked={dark}
