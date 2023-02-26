@@ -1,9 +1,10 @@
-.button[type='button'] {
+button.button {
   @apply relative
     inline-flex
     items-center
     justify-center
     text-xl
+    font-normal
     p-3
     rounded-lg
     outline-none
@@ -24,6 +25,11 @@
     active:bg-indigo-700
     disabled:bg-gray-500
     disabled:text-gray-700;
+
+  // Override Wallet Buttons styles
+  &:not([disabled]) {
+    @apply hover:bg-indigo-600 hover:focus:bg-indigo-600;
+  }
 }
 
 .content {
