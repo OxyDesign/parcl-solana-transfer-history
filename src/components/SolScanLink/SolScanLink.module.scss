@@ -1,0 +1,9 @@
+.link {
+  @apply outline-none
+    text-teal-500
+    focus:text-teal-600
+    focus:underline
+    hover:text-teal-700
+    hover:underline
+    active:text-teal-800;
+}

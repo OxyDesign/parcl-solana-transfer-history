@@ -1,0 +1,16 @@
+.underlay {
+  @apply fixed
+    z-[100]
+    top-0
+    right-0
+    bottom-0
+    left-0
+    flex
+    items-center
+    justify-center
+    bg-gray-900/70;
+}
+
+.modal {
+  @apply min-w-[300px] max-w-[500px];
+}

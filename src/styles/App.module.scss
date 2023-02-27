@@ -35,3 +35,12 @@
 .wallet {
   @apply absolute top-4 left-4;
 }
+
+.content {
+  @apply flex
+    flex-col
+    w-full
+    items-center
+    min-w-[320px]
+    max-w-[600px];
+}

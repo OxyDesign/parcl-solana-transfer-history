@@ -1,0 +1,42 @@
+.root {
+  @apply flex flex-col gap-2;
+}
+
+.label {
+  @apply text-xl
+    text-center
+    text-gray-900
+    dark:text-gray-100;
+}
+
+.input {
+  @apply text-xl
+    text-center
+    font-mono
+    p-3
+    rounded-lg
+    bg-gray-800
+    text-gray-200
+    dark:bg-gray-200
+    dark:text-gray-800
+    outline-none
+    focus:ring-2
+    focus:ring-offset-2
+    focus:ring-offset-gray-100
+    focus:dark:ring-offset-gray-900
+    focus:ring-indigo-500
+    placeholder:text-gray-500
+    placeholder:italic;
+
+  &[aria-invalid] {
+    @apply ring-2
+      ring-offset-2
+      ring-offset-gray-100
+      dark:ring-offset-gray-900
+      ring-red-500;
+  }
+}
+
+.errorMessage {
+  @apply text-lg text-red-500;
+}

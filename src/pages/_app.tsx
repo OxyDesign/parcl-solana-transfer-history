@@ -71,6 +71,7 @@ const InternalApp: FC<AppProps> = ({ Component, pageProps }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
+        id="app-root"
         className={cn([
           roboto.variable,
           robotoMono.variable,
@@ -94,15 +95,17 @@ const InternalApp: FC<AppProps> = ({ Component, pageProps }) => {
               <div className={styles.wallet}>
                 <WalletMultiButton />
               </div>
-              <NavigationTabs
-                tabs={[
-                  { name: 'Transfer', path: '/' },
-                  { name: 'Transactions', path: '/transactions' },
-                ]}
-              />
-              <Card>
-                <Component {...pageProps} />
-              </Card>
+              <div className={styles.content}>
+                <NavigationTabs
+                  tabs={[
+                    { name: 'Transfer', path: '/' },
+                    { name: 'Transactions', path: '/transactions' },
+                  ]}
+                />
+                <Card>
+                  <Component {...pageProps} />
+                </Card>
+              </div>
             </>
           )}
           {appLoading ? <Loader /> : null}
