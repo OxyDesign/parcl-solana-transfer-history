@@ -1,6 +1,7 @@
 import { FC, useEffect, useState, useMemo } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { ConnectionProvider, WalletProvider, useWallet } from '@solana/wallet-adapter-react';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
@@ -8,7 +9,14 @@ import { clusterApiUrl } from '@solana/web3.js';
 import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
 import cn from 'classnames';
 import globalStore from '@/stores/globalStore';
-import { Loader, ThemeToggle, WalletModalButton, WalletMultiButton } from '@/components';
+import {
+  Card,
+  Loader,
+  NavigationTabs,
+  ThemeToggle,
+  WalletModalButton,
+  WalletMultiButton,
+} from '@/components';
 import { localStorageProp } from '@/constants/localStorage';
 import { AppState } from '@/types/stores';
 import { Roboto, Roboto_Mono } from 'next/font/google';
@@ -55,36 +63,52 @@ const InternalApp: FC<AppProps> = ({ Component, pageProps }) => {
   }, [dispatch]);
 
   return (
-    <div
-      className={cn([
-        roboto.variable,
-        robotoMono.variable,
-        'font-sans',
-        styles.app,
-        dark && 'dark',
-      ])}
-    >
-      <main className={cn([styles.main, initLoading && styles.loading])}>
-        <ThemeToggle
-          checked={dark}
-          onToggle={() => {
-            dispatch({ type: 'CHANGE_MODE', dark: !dark });
-          }}
-          className={styles.toggle}
-        />
-        {!publicKey ? (
-          <WalletModalButton />
-        ) : (
-          <>
-            <div className={styles.wallet}>
-              <WalletMultiButton />
-            </div>
-            <Component {...pageProps} />
-          </>
-        )}
-        {appLoading ? <Loader /> : null}
-      </main>
-    </div>
+    <>
+      <Head>
+        <title>Solana Transfer History</title>
+        <meta name="description" content="Transfer SOL" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div
+        className={cn([
+          roboto.variable,
+          robotoMono.variable,
+          'font-sans',
+          styles.app,
+          dark && 'dark',
+        ])}
+      >
+        <main className={cn([styles.main, initLoading && styles.loading])}>
+          <ThemeToggle
+            checked={dark}
+            onToggle={() => {
+              dispatch({ type: 'CHANGE_MODE', dark: !dark });
+            }}
+            className={styles.toggle}
+          />
+          {!publicKey ? (
+            <WalletModalButton />
+          ) : (
+            <>
+              <div className={styles.wallet}>
+                <WalletMultiButton />
+              </div>
+              <NavigationTabs
+                tabs={[
+                  { name: 'Transfer', path: '/' },
+                  { name: 'Transactions', path: '/transactions' },
+                ]}
+              />
+              <Card>
+                <Component {...pageProps} />
+              </Card>
+            </>
+          )}
+          {appLoading ? <Loader /> : null}
+        </main>
+      </div>
+    </>
   );
 };
 

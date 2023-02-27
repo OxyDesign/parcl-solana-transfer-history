@@ -1,0 +1,45 @@
+.root {
+  @apply flex;
+}
+
+.list {
+  @apply flex gap-2;
+}
+
+.listItem {
+  @apply flex;
+}
+
+.link {
+  @apply inline-flex
+    items-center
+    justify-center
+    text-xl
+    font-normal
+    py-3
+    px-4
+    rounded-t-lg
+    outline-none
+    overflow-hidden;
+}
+
+.linkEnabled {
+  @apply text-indigo-900
+    bg-indigo-400
+    focus:text-gray-100
+    hover:text-gray-100
+    active:text-gray-100
+    focus:bg-indigo-500
+    focus:ring-inset
+    focus:ring-2
+    focus:ring-indigo-800
+    hover:bg-indigo-600
+    hover:focus:bg-indigo-600
+    active:bg-indigo-700
+    disabled:bg-gray-500
+    disabled:text-gray-700;
+}
+
+.linkDisabled {
+  @apply select-none text-gray-100 bg-indigo-700;
+}
