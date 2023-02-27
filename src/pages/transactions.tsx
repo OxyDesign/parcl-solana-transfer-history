@@ -75,7 +75,17 @@ const Transactions = () => {
     <div>
       <InstantSearch searchClient={searchClient} indexName="sol">
         <Configure filters={`sender:${publicKey?.toBase58()}`} />
-        <SearchBox className={styles.searchBox} />
+        <div className={styles.searchBoxContainer}>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="search-box" className={styles.searchBoxLabel}>
+            Search Transfer History
+          </label>
+          <SearchBox
+            id="search-box"
+            className={styles.searchBox}
+            placeholder="Wallet address, Signature..."
+          />
+        </div>
         <div className={styles.hitWrapper}>
           <div className={cn(styles.hit, styles.tableHead)}>
             <div className={styles.cellLeft} />
@@ -91,50 +101,51 @@ const Transactions = () => {
       <Modal isDismissable state={modalState}>
         {modalData ? (
           <div className={styles.modalContent}>
-            <div className={styles.modalRow}>
-              <div className={styles.modalRowTitle}>Signature</div>
-              <div className={styles.breakText}>{modalData.signature}</div>
-            </div>
-            <div className={cn(styles.modalRow, styles.modalCol)}>
+            <h3 className={styles.modalTitle}>Transaction Details</h3>
+            <section className={styles.modalRow}>
+              <h4 className={styles.modalRowTitle}>Signature</h4>
+              <p className={styles.breakText}>{modalData.signature}</p>
+            </section>
+            <section className={cn(styles.modalRow, styles.modalCol)}>
               <div className={styles.modalCell}>
-                <div className={styles.modalRowTitle}>From</div>
-                <div className={styles.breakText}>{modalData.sender}</div>
+                <h4 className={styles.modalRowTitle}>From</h4>
+                <p className={styles.breakText}>{modalData.sender}</p>
               </div>
               <div className={styles.modalCell}>
-                <div className={styles.modalRowTitle}>To</div>
-                <div className={styles.breakText}>{modalData.recipient}</div>
+                <h4 className={styles.modalRowTitle}>To</h4>
+                <p className={styles.breakText}>{modalData.recipient}</p>
               </div>
-            </div>
-            <div className={cn(styles.modalRow, styles.modalCol)}>
+            </section>
+            <section className={cn(styles.modalRow, styles.modalCol)}>
               <div className={styles.modalCell}>
-                <div className={styles.modalRowTitle}>Block</div>
-                <div className={styles.breakText}>
+                <h4 className={styles.modalRowTitle}>Block</h4>
+                <p className={styles.breakText}>
                   <span className={styles.numeric}>{modalData.block}</span>
-                </div>
+                </p>
               </div>
               <div className={styles.modalCell}>
-                <div className={styles.modalRowTitle}>Link</div>
-                <div className={styles.breakText}>
+                <h4 className={styles.modalRowTitle}>Link</h4>
+                <p className={styles.breakText}>
                   <SolScanLink signature={modalData.signature} />
-                </div>
+                </p>
               </div>
               <div className={styles.modalCell}>
-                <div className={styles.modalRowTitle}>Amount</div>
-                <div className={styles.breakText}>
+                <h4 className={styles.modalRowTitle}>Amount</h4>
+                <p className={styles.breakText}>
                   <span className={styles.numeric}>{modalData.amount}</span> SOL
-                </div>
+                </p>
               </div>
-            </div>
-            <div className={styles.modalRow}>
-              <div className={styles.modalRowTitle}>Previous Block</div>
-              <div className={styles.breakText}>{modalData.previousBlockHash}</div>
-            </div>
-            <div className={styles.modalRow}>
-              <div className={styles.modalRowTitle}>Timestamp</div>
-              <div className={styles.breakText}>
+            </section>
+            <section className={styles.modalRow}>
+              <h4 className={styles.modalRowTitle}>Previous Block</h4>
+              <p className={styles.breakText}>{modalData.previousBlockHash}</p>
+            </section>
+            <section className={styles.modalRow}>
+              <h4 className={styles.modalRowTitle}>Timestamp</h4>
+              <p className={styles.breakText}>
                 {new Date(modalData.timestamp as number).toTimeString()}
-              </div>
-            </div>
+              </p>
+            </section>
           </div>
         ) : null}
         <Button onPress={modalState.close}>Close</Button>

@@ -12,7 +12,7 @@ export const NavigationTabs: FC<NavigationTabsProps> = ({ className, tabs, ...pr
     <nav {...props} className={cn(styles.root, className)}>
       <ul className={styles.list}>
         {tabs.map(({ name, path }) => (
-          <li className={styles.listItem}>
+          <li className={styles.listItem} key={path}>
             {router.asPath === path ? (
               <span className={cn(styles.link, styles.linkDisabled)}>{name}</span>
             ) : (

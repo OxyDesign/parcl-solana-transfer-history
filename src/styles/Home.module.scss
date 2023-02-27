@@ -4,6 +4,10 @@
     gap-6;
 }
 
+.modalTitle {
+  @apply text-sm text-teal-500 uppercase text-center;
+}
+
 .modalMessage {
   @apply pb-4
     text-center

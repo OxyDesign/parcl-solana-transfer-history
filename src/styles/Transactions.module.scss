@@ -46,8 +46,12 @@
   @apply font-mono;
 }
 
+.searchBoxContainer {
+  @apply w-full flex flex-col gap-2 pb-6;
+}
+
 .searchBox {
-  @apply w-full pb-6;
+  @apply w-full;
 
   :global(.ais-SearchBox-input) {
     @apply w-full;
@@ -76,8 +80,19 @@
   }
 }
 
+.searchBoxLabel {
+  @apply text-xl
+    text-center
+    text-gray-900
+    dark:text-gray-100;
+}
+
 .modalContent {
   @apply flex flex-col gap-4 text-sm text-gray-700 dark:text-gray-300;
+}
+
+.modalTitle {
+  @apply text-sm text-teal-500 uppercase text-center;
 }
 
 .modalRow {

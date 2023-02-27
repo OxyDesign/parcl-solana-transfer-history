@@ -52,13 +52,16 @@ const Home: FC = () => {
                 .then(() => {
                   openModal(
                     <p className={styles.modalMessage}>
-                      The transfer is successful.
+                      The transfer is successful!
                       <br />
                       See the transaction on <SolScanLink signature={transaction.signature} />
                     </p>,
                   );
                 })
-                .catch((e) => console.log(e?.message));
+                .catch((e) => {
+                  /* eslint-disable-next-line no-console */
+                  console.log(e?.message);
+                });
             })
             .catch((e) => {
               openModal(
@@ -72,6 +75,7 @@ const Home: FC = () => {
         Send
       </Button>
       <Modal isDismissable state={modalState}>
+        <h3 className={styles.modalTitle}>Transfer Status</h3>
         {modalMessage}
         <Button onPress={modalState.close}>Close</Button>
       </Modal>

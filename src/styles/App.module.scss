@@ -17,6 +17,7 @@
     pt-20
     px-12
     pb-12
+    overflow-auto
     opacity-100
     transition-opacity
     duration-500
@@ -26,6 +27,18 @@
   &.loading {
     @apply opacity-0;
   }
+}
+
+.header {
+  @apply flex flex-col gap-2 pb-10 text-center;
+}
+
+.title {
+  @apply text-6xl font-light text-teal-500 uppercase italic;
+}
+
+.subTitle {
+  @apply text-3xl font-light text-indigo-600 dark:text-indigo-400;
 }
 
 .toggle {

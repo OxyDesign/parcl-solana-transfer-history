@@ -81,6 +81,10 @@ const InternalApp: FC<AppProps> = ({ Component, pageProps }) => {
         ])}
       >
         <main className={cn([styles.main, initLoading && styles.loading])}>
+          <header className={styles.header}>
+            <h1 className={styles.title}>Solana</h1>
+            <h2 className={styles.subTitle}>Transfer History</h2>
+          </header>
           <ThemeToggle
             checked={dark}
             onToggle={() => {
