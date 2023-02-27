@@ -4,6 +4,7 @@ import { useOverlayTriggerState } from 'react-stately';
 import cn from 'classnames';
 import { Button, Modal, NumberInput, SolScanLink, TextInput } from '@/components';
 import { useSolTransfer } from '@/hooks';
+import { addTransactionToDB } from '@/database/firebase';
 import styles from '@/styles/Home.module.scss';
 
 const Home: FC = () => {
@@ -47,13 +48,17 @@ const Home: FC = () => {
 
           transferSol({ address, amount })
             .then((transaction) => {
-              openModal(
-                <p className={styles.modalMessage}>
-                  The transfer is successful.
-                  <br />
-                  See the transaction on <SolScanLink signature={transaction.signature} />
-                </p>,
-              );
+              addTransactionToDB(transaction)
+                .then(() => {
+                  openModal(
+                    <p className={styles.modalMessage}>
+                      The transfer is successful.
+                      <br />
+                      See the transaction on <SolScanLink signature={transaction.signature} />
+                    </p>,
+                  );
+                })
+                .catch((e) => console.log(e?.message));
             })
             .catch((e) => {
               openModal(

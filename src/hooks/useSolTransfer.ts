@@ -1,6 +1,7 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
 import { SystemProgram, Transaction, PublicKey, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { Transaction as TransactionType } from '@/types/transaction';
 
 export const useSolTransfer = () => {
   const { connection } = useConnection();
@@ -30,13 +31,15 @@ export const useSolTransfer = () => {
       signature,
     });
 
-    return {
+    const transactionDocument: TransactionType = {
       signature,
-      block: confirmation.context.slot,
+      block: confirmation.context.slot.toString(),
       sender: publicKey.toBase58(),
       recipient: address,
       amount,
       previousBlockHash: blockhash,
     };
+
+    return transactionDocument;
   };
 };
